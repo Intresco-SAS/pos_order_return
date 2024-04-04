@@ -48,18 +48,18 @@ class PosOrder(models.Model):
         new_order.lines.unlink()
         return new_order
 
-    def _prepare_invoice_vals(self):
+    """ def _prepare_invoice_vals(self):
         res = super()._prepare_invoice_vals()
         if not self.returned_order_id.account_move:
             return res
         res.update(
             {
                 "invoice_origin": self.returned_order_id.account_move.name,
-                "name": _("Return of %s" % self.returned_order_id.account_move.name),
+                "name": _(self.pos_number),
                 "reversed_entry_id": self.returned_order_id.account_move.id,
             }
         )
-        return res
+        return res """
 
     def _action_pos_order_invoice(self):
         """Wrap common process"""
